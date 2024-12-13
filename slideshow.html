@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slideshow_Übung</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+
+      .karusell-container {
+        width: 20%;
+        height: 80%;
+        margin: 5% auto;
+        border: solid black 2px;
+        overflow: visible;
+      }
+
+      .karusell-slide {
+        display: flex;
+        width: 100%;
+        height: 500px;
+        transform: 0.4s ease-in-out;
+      }
+
+      .karusell-slide img {
+        flex: 0 0 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="karusell-container">
+      <div class="karusell-slide">
+        <img src="lene3.jpg" id="lezte" alt="L3" />
+        <img src="lene1.jpg" alt="L1" />
+        <img src="lene2.jpg" alt="L2" />
+        <img src="lene3.jpg" alt="L3" />
+        <img src="lene1.jpg" id="erste" alt="L1" />
+      </div>
+    </div>
+
+    <button id="previous">previous</button>
+    <button id="next">next</button>
+
+    <script>
+      const karusellSlide = document.querySelector(".karusell-slide");
+      const karusellImages = document.querySelectorAll(".karusell-slide img");
+
+      const previousButton = document.querySelector("#previous");
+      const nextButton = document.querySelector("#next");
+
+      let counter = 0;
+      //const size = karusellImages[0].clientWidth;
+      const size = karusellImages[0].width;
+      console.log(karusellImages[0].width);
+
+      karusellSlide.style.transform = "translateX(" + -size * counter + "px)";
+
+      previousButton.addEventListener("click", () => {
+        karusellSlide.style.transition = "transform 0.4s ease-in-out";
+        counter++;
+        karusellSlide.style.transform = "translateX(" + -size * counter + "px)";
+      });
+
+      nextButton.addEventListener("click", () => {
+        karusellSlide.style.transition = "transform 0.4s ease-in-out";
+        counter--;
+        karusellSlide.style.transform = "translateX(" + -size * counter + "px)";
+      });
+    </script>
+  </body>
+</html>
